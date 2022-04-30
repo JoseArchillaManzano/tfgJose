@@ -56,12 +56,11 @@ namespace tfgJose.Activities
             }
             if (ws.EstaRegistrado(etUserName.Text, etPassword.Text))
             {
-                Toast failSignIn = Toast.MakeText(this, "texto prueba bien", ToastLength.Short);
-                failSignIn.Show();
+                
             }
             else
             {
-                Toast failSignIn = Toast.MakeText(this,"texto prueba",ToastLength.Short);
+                Toast failSignIn = Toast.MakeText(this,"El usuario o contraseña es incorrecto",ToastLength.Short);
                 failSignIn.Show();
             }
         }

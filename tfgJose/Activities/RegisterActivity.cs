@@ -60,25 +60,41 @@ namespace tfgJose.Activities
             var textUser = etUserName.Text;
             var textPassword = etPassword.Text;
             var textConfirm = etConfirmPassword.Text;
-            
+            String message = "";
+            bool fail = false;
             if(textEmail == "" || textUser == "" || textPassword == "" || textConfirm == "")
             {
-                Toast missValues = Toast.MakeText(this, "Faltan campos por rellenar", ToastLength.Short);
-                missValues.Show();
-            }else if (!textPassword.Equals(textConfirm))
+                message = "Faltan campos por rellenar";
+                fail = true;
+            }
+            else if (!textPassword.Equals(textConfirm))
             {
-                Toast differentPasswords = Toast.MakeText(this, "Las contraseñas no coinciden entre si", ToastLength.Short);
-                differentPasswords.Show();
+                message = "Las contraseñas no coinciden entre si";
+                fail = true;
             }
             else if (!validEmail(textEmail))
             {
-                Toast invalidEmail = Toast.MakeText(this, "El email introducido no es valido", ToastLength.Short);
-                invalidEmail.Show();
+                message = "El email introducido no es valido";
+                fail = true;
             }
-            else
+            if(!fail)
             {
-                ws.Registrar(textUser, textPassword, "User", textEmail);
+                bool result = ws.Registrar(textUser, textPassword, "usuario", textEmail);
+                if (result)
+                {
+                    Intent intent = new Intent(this, typeof(RegisterActivity)); //:TODO TE TENDRÍA QUE LLEVAR AL CUESTIONARIO, MODIFICAR
+                    StartActivity(intent);
+                }
+                else
+                {
+
+                }
+                
             }
+            
+                Toast toast = Toast.MakeText(this, message, ToastLength.Short);
+                toast.Show();
+            
         }
 
         private Boolean validEmail(String email)
