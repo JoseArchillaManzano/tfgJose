@@ -36,7 +36,8 @@ namespace tfgJose.Activities
             bSignUp = FindViewById<Button>(Resource.Id.button_signup);
             ws = new WS_Breathing();
 
-            bSignIn.Click += signIn; 
+            bSignIn.Click += signIn;
+            bSignUp.Click += signUp;
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -63,6 +64,12 @@ namespace tfgJose.Activities
                 Toast failSignIn = Toast.MakeText(this,"texto prueba",ToastLength.Short);
                 failSignIn.Show();
             }
+        }
+
+        private void signUp(object sender, EventArgs eventArgs)
+        {
+            Intent intent = new Intent(this, typeof(RegisterActivity));
+            StartActivity(intent);
         }
     }
 }
