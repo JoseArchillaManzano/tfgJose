@@ -1,7 +1,9 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using AndroidX.AppCompat.App;
+using tfgJose.Activities;
 
 namespace tfgJose
 {
@@ -13,7 +15,9 @@ namespace tfgJose
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.activity_main);
+            //SetContentView(Resource.Layout.activity_main);
+            Intent intent = new Intent(this, typeof(LoginActivity));
+            StartActivity(intent);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
